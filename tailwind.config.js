@@ -17,6 +17,9 @@ export default {
             backgroundImage: {
                 m3: "url('/storage/img/m3_g80_night.jpg')",
             },
+            dropShadow: {
+                title: "0 0 .5rem rgba(0, 0, 0, 1)",
+            },
         },
     },
 
