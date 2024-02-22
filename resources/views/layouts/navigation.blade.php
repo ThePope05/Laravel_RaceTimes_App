@@ -35,7 +35,12 @@
             @if ( Auth::user() !== null)
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-button :href="route('time.store')" :active="request()->routeIs('time.store')">
+                    <x-nav-button :href="route('circuit.index')" :active="request()->routeIs('circuit.index')">
+                        {{ __('Circuits') }}
+                    </x-nav-button>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 mr-8 sm:flex">
+                    <x-nav-button :href="route('time.create')" :active="request()->routeIs('time.create')">
                         {{ __('New time') }}
                     </x-nav-button>
                 </div>
