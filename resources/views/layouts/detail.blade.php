@@ -28,8 +28,8 @@
         @endif
 
         <!-- Page Content -->
-        <main>
-            {{ $slot }}
+        <main class="w-full h-full">
+
         </main>
     </div>
 </body>
