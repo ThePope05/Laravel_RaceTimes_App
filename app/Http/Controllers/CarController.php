@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use Illuminate\Support\Facades\Auth;
 
 class CarController extends Controller
 {
     public function index()
     {
-        return view('car.index');
+        $cars = Auth::user()->cars;
+
+        return view('car.index', ['cars' => $cars]);
     }
 
     public function create()
