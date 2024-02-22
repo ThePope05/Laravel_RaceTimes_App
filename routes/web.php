@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CircuitController;
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\TimeController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,14 +21,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/dashboard', [ProfileController::class, 'dashboard'])->name('dashboard');
 });
 
 Route::middleware('auth')->group(function () {
@@ -38,6 +36,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/circuit/{circuit}/edit', [CircuitController::class, 'edit'])->name('circuit.edit');
     Route::patch('/circuit/{circuit}', [CircuitController::class, 'update'])->name('circuit.update');
     Route::delete('/circuit/{circuit}', [CircuitController::class, 'destroy'])->name('circuit.destroy');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/car', [CarController::class, 'index'])->name('car.index');
+    Route::get('/car/create', [CarController::class, 'create'])->name('car.create');
+    Route::post('/car', [CarController::class, 'store'])->name('car.store');
+    Route::get('/car/{car}', [CarController::class, 'show'])->name('car.show');
+    Route::get('/car/{car}/edit', [CarController::class, 'edit'])->name('car.edit');
+    Route::patch('/car/{car}', [CarController::class, 'update'])->name('car.update');
+    Route::delete('/car/{car}', [CarController::class, 'destroy'])->name('car.destroy');
 });
 
 Route::middleware('auth')->group(function () {
