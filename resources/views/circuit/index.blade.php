@@ -19,8 +19,8 @@
     @endif
 
     <x-card-large>
-        <a href="{{ route('circuit.create') }}" class="bg-slate-900 text-slate-600 font-bold w-3/5 mx-auto py-2 text-center rounded-lg hover:text-slate-500 transition-colors">
+        <x-button route="{{ route('circuit.create') }}">
             Create a new circuit
-        </a>
+        </x-button>
     </x-card-large>
 </x-app-layout>
