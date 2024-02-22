@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Circuit;
+use App\Models\Car;
+
 use Illuminate\Http\Request;
 use App\Models\Time;
 
@@ -9,12 +12,17 @@ class TimeController extends Controller
 {
     public function index()
     {
-        return view('time.index');
+        $times = Time::all()->where('user_id', auth()->id());
+
+        return view('time.index', ['times' => $times]);
     }
 
     public function create()
     {
-        return view('time.create');
+        $circuits = Circuit::all();
+        $cars = Car::all()->where('user_id', auth()->id());
+
+        return view('time.form', ['formAction' => 'time.store', 'circuits' => $circuits, 'cars' => $cars]);
     }
 
     public function store(Request $request)
@@ -22,12 +30,19 @@ class TimeController extends Controller
         $request->validate([
             'time' => 'required',
             'circuit_id' => 'required',
-            'user_id' => 'required',
+            'car_id' => 'required',
         ]);
 
-        $time = Time::create($request->all());
+        $values = [
+            'lap_time' => $request->time,
+            'circuit_id' => $request->circuit_id,
+            'car_id' => $request->car_id,
+            'user_id' => auth()->id()
+        ];
 
-        return redirect()->route('time.show', $time);
+        $time = Time::create($values);
+
+        return redirect()->route('time.index');
     }
 
     public function show($time)
