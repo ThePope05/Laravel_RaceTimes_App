@@ -22,21 +22,17 @@ class CarController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'brand' => 'required',
-            'model' => 'required',
-            'year' => 'required|integer|min:1900|max:' . date('Y'),
-            'user_id' => 'required|integer'
-        ]);
+        $car = new Car();
 
-        $values = [
-            'brand' => $request->brand,
-            'model' => $request->model,
-            'year' => $request->year,
-            'user_id' => $request->user_id
-        ];
+        $car->brand = $request->brand;
+        $car->model = $request->model;
+        $car->year = $request->year;
+        $car->power = $request->power;
+        $car->torque = $request->torque;
+        $car->weight = $request->weight;
+        $car->user_id = Auth::user()->id;
 
-        $car = Car::create($values);
+        $car->save();
 
         return redirect()->route('car.index');
     }

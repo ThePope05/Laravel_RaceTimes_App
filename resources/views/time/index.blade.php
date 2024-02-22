@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        All YOUR TIMES
+        YOUR TIMES
     </x-slot>
 
     @if ($times->count())
@@ -14,8 +14,16 @@
     </x-card-small>
     @endforeach
     @else
-    <div class="m-4 w-4/5 h-48 flex flex-col justify-center align-middle bg-gradient-to-tr from-slate-700 to-slate-900 rounded-lg hover:scale-105 transition-transform">
-        <p>There are no lap times</p>
-    </div>
+    <x-card-small>
+        <x-slot name="title">
+            NO TIMES YET
+        </x-slot>
+    </x-card-small>
+
+    <x-card-small>
+        <x-button route="{{ route('time.create') }}">
+            ADD A NEW TIME
+        </x-button>
+    </x-card-small>
     @endif
 </x-app-layout>

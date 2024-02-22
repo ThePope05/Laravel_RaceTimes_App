@@ -53,10 +53,4 @@
         <p class="text-center text-2xl font-semibold">No times yet</p>
         @endif
     </x-card-large>
-
-    <x-card-large>
-        <x-button route="{{ route('time.index') }}">
-            Your times
-        </x-button>
-    </x-card-large>
 </x-app-layout>

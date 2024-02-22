@@ -3,6 +3,7 @@
         YOUR CARS
     </x-slot>
 
+    @if ($cars->count() > 0)
     @foreach ($cars as $car)
     <x-card-small>
         <x-button route="{{ route('car.show', $car->id) }}">
@@ -12,10 +13,22 @@
         <p class="text-center text-xl">HP/KG: {{ round($car->power / $car->weight, 2) }}</p>
     </x-card-small>
     @endforeach
-
     <x-card-large>
         <x-button route="{{ route('car.create') }}">
-            <h1 class="w-full h-full text-center text-lg">ADD A NEW CAR</h1>
+            ADD A NEW CAR
         </x-button>
     </x-card-large>
+    @else
+    <x-card-small>
+        <x-slot name="title">
+            NO CARS
+        </x-slot>
+    </x-card-small>
+
+    <x-card-small>
+        <x-button route="{{ route('car.create') }}">
+            ADD A NEW CAR
+        </x-button>
+    </x-card-small>
+    @endif
 </x-app-layout>
