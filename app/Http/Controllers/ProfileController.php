@@ -73,8 +73,8 @@ class ProfileController extends Controller
         return view('dashboard', [
             'topLaps' => $topLaps,
             'lastLap' => $lastLap,
-            'mostUsedCar' => $mostUsedCar->car,
-            'mostDrivenTrack' => $mostDrivenTrack->circuit,
+            'mostUsedCar' => isset($mostUsedCar->car) ? $mostUsedCar->car : null,
+            'mostDrivenTrack' => isset($mostDrivenTrack->circuit) ? $mostDrivenTrack->circuit : null,
         ]);
     }
 }
