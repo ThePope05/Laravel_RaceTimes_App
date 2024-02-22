@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('times', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->time('lap_time');
             $table->foreignId('circuit_id')->constrained();
             $table->foreignId('user_id')->constrained();
