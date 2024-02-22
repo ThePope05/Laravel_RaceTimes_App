@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CircuitController;
 use App\Http\Controllers\CarController;
@@ -17,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', [GeneralController::class, 'welcome'])->name('welcome');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
