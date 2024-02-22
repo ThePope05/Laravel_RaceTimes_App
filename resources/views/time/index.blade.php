@@ -1,5 +1,5 @@
 <x-app-layout>
     <x-slot name="header">
-        YOUR PERSONAL RECORDS
+        TIME TRIALS
     </x-slot>
 </x-app-layout>
