@@ -8,5 +8,9 @@ $attributes['class'] = $class;
 @endphp
 
 <div class="{{ $attributes['class'] }}">
+    @if (isset($title))
+    <h2 class="text-3xl text-center font-bold text-white">{{ $title }}</h2>
+    @endif
+
     {{ $slot }}
 </div>
