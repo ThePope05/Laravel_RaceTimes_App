@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Time;
+
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -56,5 +58,23 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    /**
+     * Display the user's dashboard.
+     */
+    public function dashboard(): View
+    {
+        $topLaps = Time::where('user_id', Auth::id())->orderBy('lap_time', 'asc')->limit(5)->get();
+        $lastLap = Time::where('user_id', Auth::id())->orderBy('created_at', 'desc')->first();
+        $mostUsedCar = Time::select('car_id')->where('user_id', Auth::id())->groupBy('car_id')->orderByRaw('COUNT(*) DESC')->first();
+        $mostDrivenTrack = Time::select('circuit_id')->where('user_id', Auth::id())->groupBy('circuit_id')->orderByRaw('COUNT(*) DESC')->first();
+
+        return view('dashboard', [
+            'topLaps' => $topLaps,
+            'lastLap' => $lastLap,
+            'mostUsedCar' => $mostUsedCar->car,
+            'mostDrivenTrack' => $mostDrivenTrack->circuit,
+        ]);
     }
 }
