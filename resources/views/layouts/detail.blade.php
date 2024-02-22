@@ -17,19 +17,39 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div class="min-h-screen bg-gray-100 dark:bg-gray-900 relative">
         @include('layouts.navigation')
 
-        <!-- Page Heading -->
-        @if (isset($header))
-        <x-banner>
-            {{ $header }}
-        </x-banner>
-        @endif
+        <main class="h-full">
+            <!-- Main LEFT -->
+            @if (isset($main) && isset($main->attributes['left']))
+            <div class=" w-4/5">
+                <div class="w-full">
+                    {{ $main }}
+                </div>
+            </div>
+            @else
+            <div class="flex justify-center">
+                <div class="w-4/5">
+                    {{ $secondary }}
+                </div>
+            </div>
+            @endif
 
-        <!-- Page Content -->
-        <main class="w-full h-full">
-
+            <!-- Main RIGHT -->
+            @if (isset($main) && isset($main->attributes['right']))
+            <div class="flex justify-center">
+                <div class="w-4/5">
+                    {{ $main }}
+                </div>
+            </div>
+            @else
+            <div class="flex justify-center">
+                <div class="w-4/5">
+                    {{ $secondary }}
+                </div>
+            </div>
+            @endif
         </main>
     </div>
 </body>

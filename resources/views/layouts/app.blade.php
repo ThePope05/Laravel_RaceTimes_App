@@ -27,9 +27,11 @@
         </x-banner>
         @endif
 
-        <!-- Page Content -->
-        <main>
-            {{ $slot }}
+
+        <main class="container mx-auto h-max">
+            <div class="flex justify-center flex-wrap h-full pt-16">
+                {{ $slot }}
+            </div>
         </main>
     </div>
 </body>
