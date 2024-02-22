@@ -15,7 +15,7 @@ class CircuitController extends Controller
 
     public function create()
     {
-        return view('circuit.create');
+        return view('circuit.form', ['formAction' => 'circuit.store']);
     }
 
     public function store(Request $request)
@@ -28,7 +28,7 @@ class CircuitController extends Controller
 
         $circuit = Circuit::create($request->all());
 
-        return redirect()->route('circuit.show', $circuit);
+        return redirect()->route('circuit.index', $circuit);
     }
 
     public function show(Circuit $circuit)
