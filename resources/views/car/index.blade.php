@@ -5,12 +5,12 @@
 
     @if ($cars->count() > 0)
     @foreach ($cars as $car)
-    <x-card-small>
+    <x-card-small class="from-slate-600">
         <x-button route="{{ route('car.show', $car->id) }}">
-            <h1 class="w-full h-full text-center text-lg">{{ $car->brand . ' | ' . $car->model }}</h1>
+            <h1 class="w-full h-full text-center text-2xl">{{ $car->brand . ' | ' . $car->model }}</h1>
         </x-button>
-        <p class="text-center text-xl">{{ $car->year }}</p>
-        <p class="text-center text-xl">HP/KG: {{ round($car->power / $car->weight, 2) }}</p>
+        <p class="mt-2 w-full font-bold text-center">{{ $car->year }}</p>
+        <p class="mt-2 w-full font-bold text-center">HP/KG: {{ round($car->power / $car->weight, 2) }}</p>
     </x-card-small>
     @endforeach
     <x-card-large>

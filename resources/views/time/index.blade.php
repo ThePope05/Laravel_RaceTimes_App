@@ -5,12 +5,12 @@
 
     @if ($times->count())
     @foreach ($times as $time)
-    <x-card-small>
+    <x-card-small class="from-slate-600">
         <x-button route="{{ route('time.show', $time->id) }}">
-            {{ $time->lap_time }}
+            <h1 class="w-full h-full text-center text-2xl">{{ $time->lap_time }}</h1>
         </x-button>
-        <p class="mt-2 w-full text-center">{{ $time->car->brand . " | " . $time->car->model }}</p>
-        <p class="mt-2 w-full text-center">{{ $time->circuit->name . " | " . $time->circuit->country }}</p>
+        <p class="mt-2 w-full font-bold text-center">{{ $time->car->brand . " | " . $time->car->model }}</p>
+        <p class="mt-2 w-full font-bold text-center">{{ $time->circuit->name . " | " . $time->circuit->country }}</p>
     </x-card-small>
     @endforeach
     @else

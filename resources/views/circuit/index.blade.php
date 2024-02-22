@@ -5,11 +5,11 @@
 
     @if ($circuits->count())
     @foreach ($circuits as $circuit)
-    <x-card-small>
+    <x-card-small class="from-slate-600">
         <x-button route="{{ route('circuit.show', $circuit->id) }}">
-            {{ $circuit->name }}
+            <h1 class="w-full h-full text-center text-2xl">{{ $circuit->name }}</h1>
         </x-button>
-        <p class="mt-2 w-full text-center">{{ $circuit->country }}</p>
+        <p class="mt-2 w-full font-bold text-center">{{ $circuit->country }}</p>
     </x-card-small>
     @endforeach
     @else
