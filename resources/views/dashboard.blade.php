@@ -4,30 +4,30 @@
     </x-slot>
 
     <x-card-small class="from-amber-600 to-pink-600 justify-between">
-        <x-button route="{{ isset(Auth::user()->time) ? route('time.show', $topLaps[0]->id) : '' }}">
+        <x-button route="{{ isset($topLaps[0]) ? route('time.show', $topLaps[0]->id) : '' }}">
             <h1 class="w-full h-full text-center text-3xl">YOUR BEST TIME</h1>
         </x-button>
-        <p class="text-center text-xl">{{ isset(Auth::user()->time) ? $topLaps[0]->car->brand . ' | ' . $topLaps[0]->car->model : '' }}</p>
-        <p class="text-center text-2xl font-semibold">{{ isset(Auth::user()->time) ? $topLaps[0]->lap_time : 'No times yet' }}</p>
-        <p class="text-center text-xl">{{ isset(Auth::user()->time) ? $topLaps[0]->circuit->name : '' }}</p>
+        <p class="text-center text-xl">{{ isset($topLaps[0]) ? $topLaps[0]->car->brand . ' | ' . $topLaps[0]->car->model : '' }}</p>
+        <p class="text-center text-2xl font-semibold">{{ isset($topLaps[0]) ? $topLaps[0]->lap_time : 'No times yet' }}</p>
+        <p class="text-center text-xl">{{ isset($topLaps[0]) ? $topLaps[0]->circuit->name : '' }}</p>
     </x-card-small>
 
     <x-card-small class="bg-gradient-to-br from-green-500 to-green-900 justify-between">
-        <x-button route="{{ isset(Auth::user()->time) ? route('time.show', $lastLap->id) : '' }}">
+        <x-button route="{{ !is_null($lastLap) ? route('time.show', $lastLap->id) : '' }}">
             <h1 class="w-full h-full text-center text-3xl">LAST LAP</h1>
         </x-button>
 
-        <p class="text-center text-xl">{{ isset(Auth::user()->time) ? $lastLap->car->brand . ' | ' . $lastLap->car->model : '' }}</p>
-        <p class="text-center text-2xl font-semibold">{{ isset(Auth::user()->time) ? $lastLap->lap_time : 'No times yet' }}</p>
-        <p class="text-center text-xl">{{ isset(Auth::user()->time) ? $lastLap->circuit->name : '' }}</p>
+        <p class="text-center text-xl">{{ !is_null($lastLap) ? $lastLap->car->brand . ' | ' . $lastLap->car->model : '' }}</p>
+        <p class="text-center text-2xl font-semibold">{{ !is_null($lastLap) ? $lastLap->lap_time : 'No times yet' }}</p>
+        <p class="text-center text-xl">{{ !is_null($lastLap) ? $lastLap->circuit->name : '' }}</p>
     </x-card-small>
 
     <x-card-small class="bg-gradient-to-t from-blue-500 to-blue-900 justify-between">
-        <x-button route="{{ isset(Auth::user()->car) ? route('car.index') : '' }}">
+        <x-button route="{{ !is_null($mostUsedCar) ? route('car.index') : '' }}">
             <h1 class="w-full h-full text-center text-3xl">YOUR MOST USED CAR</h1>
         </x-button>
 
-        <p class="text-center text-2xl font-semibold">{{ isset(Auth::user()->car) ? $mostUsedCar->brand . ' | ' . $mostUsedCar->model : 'No cars yet' }}</p>
+        <p class="text-center text-2xl font-semibold">{{ !is_null($mostUsedCar) ? $mostUsedCar->brand . ' | ' . $mostUsedCar->model : 'No cars yet' }}</p>
     </x-card-small>
 
     <x-card-small class="bg-gradient-to-t from-purple-500 to-purple-900 justify-between">
