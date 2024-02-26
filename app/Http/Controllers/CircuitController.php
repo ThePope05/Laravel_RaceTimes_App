@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Circuit;
+use App\Models\Time;
 
 class CircuitController extends Controller
 {
@@ -33,7 +34,9 @@ class CircuitController extends Controller
 
     public function show(Circuit $circuit)
     {
-        return view('circuit.show', compact('circuit'));
+        $topLapTime = Time::where('circuit_id', $circuit->id)->orderBy('lap_time', 'asc')->first();
+
+        return view('circuit.show', ['circuit' => $circuit, 'topLapTime' => $topLapTime]);
     }
 
     public function edit(Circuit $circuit)

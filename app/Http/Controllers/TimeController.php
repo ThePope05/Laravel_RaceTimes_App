@@ -47,7 +47,10 @@ class TimeController extends Controller
 
     public function show($time)
     {
-        return view('time.show');
+        $time = Time::find($time);
+        $topLapTimes = Time::where('circuit_id', $time->circuit_id)->orderBy('lap_time', 'asc')->take(3)->get();
+
+        return view('time.show', ['time' => $time, 'topLapTimes' => $topLapTimes]);
     }
 
     public function edit($time)

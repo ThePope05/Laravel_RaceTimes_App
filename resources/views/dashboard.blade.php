@@ -31,7 +31,7 @@
     </x-card-small>
 
     <x-card-small colors="bg-gradient-to-t from-purple-500 to-purple-900">
-        <x-button route="{{ route('circuit.index') }}">
+        <x-button route="{{ !is_null($mostDrivenTrack) ? route('circuit.show', $mostDrivenTrack->id) : '' }}">
             <h1 class="w-full h-full text-center text-3xl">YOUR MOST DRIVEN TRACK</h1>
         </x-button>
         <p class="text-center text-2xl font-semibold">{{ $mostDrivenTrack->name ?? 'No tracks yet' }}</p>
