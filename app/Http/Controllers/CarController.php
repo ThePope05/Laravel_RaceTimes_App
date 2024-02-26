@@ -39,7 +39,10 @@ class CarController extends Controller
 
     public function show($car)
     {
-        return view('car.show');
+        $car = Car::find($car);
+        $fastestLap = $car->times()->orderBy('lap_time', 'asc')->first();
+
+        return view('car.show', ['car' => $car, 'fastestLap' => $fastestLap]);
     }
 
     public function edit($car)
